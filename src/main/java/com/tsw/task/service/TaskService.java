@@ -43,8 +43,9 @@ public class TaskService {
 
 	public ResultData doDelete(int id) {
 		taskdao.doDelete(id);
+		Task task = taskdao.getTask(id);
 		
-		if(taskdao.isDelete(id)) {
+		if(task.isDelStatus()) {
 			return new ResultData("S-1", "정상적으로 삭제되었습니다.");
 		}
 		return new ResultData("F-2", "삭제에 실패했습니다.");

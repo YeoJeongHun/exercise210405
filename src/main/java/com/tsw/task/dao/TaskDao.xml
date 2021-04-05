@@ -34,13 +34,6 @@
 		= #{id};
 	</update>
 
-	<select id="isDelete" resultType="boolean">
-		SELECT delStatus
-		FROM TASK
-		WHERE
-		id = #{id};
-	</select>
-
 	<update id="doModify">
 		UPDATE TASK
 		SET title = #{title},

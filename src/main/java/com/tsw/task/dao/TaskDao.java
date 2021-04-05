@@ -16,8 +16,6 @@ public interface TaskDao {
 
 	void doDelete(@Param("id") int id);
 
-	boolean isDelete(@Param("id") int id);
-
 	void doModify(@Param("id") Integer id, @Param("title") String title, @Param("body") String body);
 	
 }
