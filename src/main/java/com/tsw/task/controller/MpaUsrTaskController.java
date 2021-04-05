@@ -14,6 +14,16 @@ public class MpaUsrTaskController {
 	@Autowired
 	private TaskService service;
 	
+	@RequestMapping("/")
+	public String showMainRoot() {
+		return "redirect:/mpaUsr/task/test";
+	}
+	
+	@RequestMapping("/mpaUsr/task/test")
+	public String test() {
+		return "mpaUsr/task/test";
+	}
+	
 	@RequestMapping("/mpaUsr/task/doWrite")
 	@ResponseBody
 	public ResultData doWrite(String title, String body) {
