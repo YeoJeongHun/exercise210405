@@ -1,0 +1,134 @@
+DROP DATABASE IF EXISTS TSW;
+CREATE DATABASE TSW;
+USE TSW;
+
+# 업무 테이블 생성
+CREATE TABLE TASK(
+id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+regDate DATETIME NOT NULL COMMENT '작성날짜',
+updateDate DATETIME NOT NULL COMMENT '수정날짜',
+taskPartId INT(3) UNSIGNED NOT NULL COMMENT '업무부서번호',
+memberId INT(10) UNSIGNED NOT NULL COMMENT '작성자번호',
+title CHAR(100) NOT NULL COMMENT '제목',
+`body` TEXT NOT NULL COMMENT '본문',
+blindStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '블라인드여부',
+blindDate DATETIME COMMENT '블라인드날짜',
+delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부',
+delDate DATETIME COMMENT '삭제날짜',
+reciverCount INT(10) NOT NULL DEFAULT 0 COMMENT '수신자 수'
+);
+
+#수신자 테이블 생성
+CREATE TABLE RECIVERS(
+id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+memberId INT(10) UNSIGNED NOT NULL COMMENT '업무 작성자번호',
+checkDate DATETIME COMMENT '확인날짜',
+taskId INT(10) UNSIGNED NOT NULL COMMENT '업무테이블 번호'
+);
+
+# 초기값 설정
+#1번 업무 글
+INSERT TASK
+SET regDate = NOW(),
+updateDate = NOW(),
+taskPartId = 1,
+memberId = 1,
+title = '제목1',
+`body` = '내용1';
+
+#2번 업무 글
+INSERT TASK
+SET regDate = NOW(),
+updateDate = NOW(),
+taskPartId = 1,
+memberId = 1,
+title = '제목2',
+`body` = '내용2';
+
+#3번 업무 글
+INSERT TASK
+SET regDate = NOW(),
+updateDate = NOW(),
+taskPartId = 2,
+memberId = 2,
+title = '제목3',
+`body` = '내용3';
+
+#4번 업무 글
+INSERT TASK
+SET regDate = NOW(),
+updateDate = NOW(),
+taskPartId = 1,
+memberId = 3,
+title = '제목4',
+`body` = '내용4';
+
+#5번 업무 글
+INSERT TASK
+SET regDate = NOW(),
+updateDate = NOW(),
+taskPartId = 2,
+memberId = 1,
+title = '제목5',
+`body` = '내용5';
+
+#1번 글의 수신자
+INSERT RECIVERS
+SET memberId = 2,
+taskId = 1;
+INSERT RECIVERS
+SET memberId = 3,
+taskId = 1;
+INSERT RECIVERS
+SET memberId = 4,
+taskId = 1;
+INSERT RECIVERS
+SET memberId = 5,
+taskId = 1;
+
+#2번 글의 수신자
+INSERT RECIVERS
+SET memberId = 2,
+taskId = 2;
+INSERT RECIVERS
+SET memberId = 3,
+taskId = 2;
+INSERT RECIVERS
+SET memberId = 4,
+taskId = 2;
+
+#3번 글의 수신자
+INSERT RECIVERS
+SET memberId = 2,
+taskId = 3;
+INSERT RECIVERS
+SET memberId = 3,
+taskId = 3;
+INSERT RECIVERS
+SET memberId = 5,
+taskId = 3;
+
+#4번 글의 수신자
+INSERT RECIVERS
+SET memberId = 3,
+taskId = 4;
+INSERT RECIVERS
+SET memberId = 4,
+taskId = 4;
+INSERT RECIVERS
+SET memberId = 5,
+taskId = 4;
+
+#5번 글의 수신자
+INSERT RECIVERS
+SET memberId = 2,
+taskId = 5;
+INSERT RECIVERS
+SET memberId = 3,
+taskId = 5;
+INSERT RECIVERS
+SET memberId = 4,
+taskId = 5;
+INSERT RECIVERS
+SET memberId = 5,
+taskId = 5;
