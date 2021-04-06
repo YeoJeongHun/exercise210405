@@ -5,7 +5,7 @@
 <c:set var="pageTitle"
 	value="<span><i class='fas fa-home'></i></span> <span>HOME</span>" />
 
-<%@ include file="../common/head.jspf"%>
+<%@ include file="common/head.jspf"%>
 
 
     <table class="table_main">
@@ -28,4 +28,4 @@
 
 
 
-<%@ include file="../common/foot.jspf"%>
+<%@ include file="common/foot.jspf"%>

@@ -26,6 +26,7 @@ public class MpaUsrTaskController {
 	
 	@RequestMapping("/mpaUsr/main")
 	public String test(HttpServletRequest req) {
+		req.setAttribute("pageTitle", "메인페이지");
 		return "mpaUsr/main";
 	}
 	
@@ -37,6 +38,7 @@ public class MpaUsrTaskController {
 		}
 		List<Task> tasks = service.getTasksByPart(TaskPartId);
 		req.setAttribute("tasks", tasks);
+		req.setAttribute("pageTitle", "업무관리");
 		
 		return "mpaUsr/task/showTasks";
 	}

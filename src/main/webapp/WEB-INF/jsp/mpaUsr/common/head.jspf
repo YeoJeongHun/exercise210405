@@ -67,7 +67,7 @@ td {
 
 <link rel="stylesheet" href="/resource/common.css" />
 <script src="/resource/common.js" defer></script>
-<title>연습모드! 업무짜자</title>
+<title>${pageTitle}연습모드! 업무짜자</title>
 </head>
 <body>
 	<div class="site-wrap">

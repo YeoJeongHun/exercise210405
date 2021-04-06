@@ -1,0 +1,178 @@
+
+#멤버 테이블 생성
+DROP TABLE IF EXISTS `member`;
+
+CREATE TABLE `member`(
+id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+loginId CHAR(20) UNIQUE NOT NULL COMMENT '로그인ID',
+loginPw CHAR(20) UNIQUE NOT NULL COMMENT '로그인PW',
+`name` CHAR(20) NOT NULL COMMENT '이름',
+department INT(3) NOT NULL COMMENT '부서번호',
+departmentName CHAR(20) NOT NULL COMMENT '부서이름',
+workStartDate DATETIME COMMENT '입사일',
+workFinishDate DATETIME COMMENT '퇴사일',
+birthDate DATETIME COMMENT '생일',
+gender TINYINT(1) UNSIGNED NOT NULL COMMENT '성별',
+`rank` CHAR(20) COMMENT '직급'
+);
+
+#권한 관리 테이블 생성
+DROP TABLE IF EXISTS authority;
+
+CREATE TABLE authority(
+id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+memberId INT(10) NOT NULL COMMENT '멤버 ID',
+TMTaskStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'TM업무',
+SalesTaskStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '영업업무',
+SurportTaskStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '지원업무',
+TechTaskStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '기술업무',
+StockStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '재고관리',
+TMPerformanceStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'TM실적',
+SalesPerformanceStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '영업실적',
+AuthorityStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '권한관리',
+MemberManagementStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '멤버관리'
+);
+
+#예시 테이블 생성
+#관리자 계정
+insert into `member`
+set 
+loginId = 'admin',
+loginPw = 'admin',
+`name` = '관리자',
+department = 0,
+departmentName = '관리자',
+gender = 0,
+`rank` = '관리자';
+insert into authority
+set
+memberId =1,
+TMTaskStatus = 1,
+SalesTaskStatus = 1,
+SurportTaskStatus = 1,
+TechTaskStatus = 1,
+StockStatus = 1,
+TMPerformanceStatus = 1,
+SalesPerformanceStatus = 1,
+AuthorityStatus = 1,
+MemberManagementStatus = 1;
+#멤버1 생성
+INSERT INTO `member`
+SET 
+loginId = 'test1',
+loginPw = 'test1',
+`name` = '김멤버1',
+department = 2,
+departmentName = '영업',
+gender = 0,
+`rank` = '메니저';
+INSERT INTO authority
+SET
+memberId =2;
+#멤버2 생성
+INSERT INTO `member`
+SET 
+loginId = 'test2',
+loginPw = 'test2',
+`name` = '김멤버2',
+department = 1,
+departmentName = 'TM',
+gender = 1,
+`rank` = '메니저';
+INSERT INTO authority
+SET
+memberId =3;
+#멤버3 생성
+INSERT INTO `member`
+SET 
+loginId = 'test3',
+loginPw = 'test3',
+`name` = '김멤버3',
+department = 1,
+departmentName = 'TM',
+gender = 1,
+`rank` = '팀장';
+INSERT INTO authority
+SET
+memberId =4;
+#멤버4 생성
+INSERT INTO `member`
+SET 
+loginId = 'test4',
+loginPw = 'test4',
+`name` = '김멤버4',
+department = 3,
+departmentName = '기술지원',
+gender = 0,
+`rank` = '메니저';
+INSERT INTO authority
+SET
+memberId =5;
+#멤버5 생성
+INSERT INTO `member`
+SET 
+loginId = 'test5',
+loginPw = 'test5',
+`name` = '김멤버5',
+department = 3,
+departmentName = '기술지원',
+gender = 0,
+`rank` = '주임';
+INSERT INTO authority
+SET
+memberId =6;
+#멤버6 생성
+INSERT INTO `member`
+SET 
+loginId = 'test6',
+loginPw = 'test6',
+`name` = '김멤버6',
+department = 4,
+departmentName = '경영지원',
+gender = 1,
+`rank` = '팀장';
+INSERT INTO authority
+SET
+memberId =7;
+#멤버7 생성
+INSERT INTO `member`
+SET 
+loginId = 'test7',
+loginPw = 'test7',
+`name` = '김멤버7',
+department = 4,
+departmentName = '경영지원',
+gender = 1,
+`rank` = '메니저';
+INSERT INTO authority
+SET
+memberId =8;
+#멤버8 생성
+INSERT INTO `member`
+SET 
+loginId = 'test8',
+loginPw = 'test8',
+`name` = '김멤버8',
+department = 2,
+departmentName = '영업',
+gender = 0,
+`rank` = '대표이사';
+INSERT INTO authority
+SET
+memberId =9;
+
+select * from `member`;
+select * from authority;
+
+
+select *from `member` m
+inner join authority a
+on m.id = a.memberId;
+
+
+
+
+
+
+
+
