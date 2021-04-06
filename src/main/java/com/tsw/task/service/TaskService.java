@@ -21,15 +21,11 @@ public class TaskService {
 		return new ResultData("S-1", "업무가 정상적으로 등록되었습니다.");
 	}
 
-	public ResultData showAll() {
+	public List<Task> getTask(int taskId) {
 		List<Task> tasks = new ArrayList<>();
 
 		int countTask = taskdao.getNumTask();
-		
-		if(countTask==0) {
-			return new ResultData("S-1", "업무 기록이 없습니다.");
-		}
-		
+
 		for (int i = 1; i <= countTask; i++) {
 			Task task = taskdao.getTask(i);
 			if (task.isDelStatus()) {
@@ -37,15 +33,35 @@ public class TaskService {
 			}
 			tasks.add(task);
 		}
-		
-		return new ResultData("S-2", "모든 업무 기록을 표시합니다.", "모든 업무 기록", tasks);
+
+		return tasks;
 	}
+
+//	public ResultData showAll() {
+//		List<Task> tasks = new ArrayList<>();
+//
+//		int countTask = taskdao.getNumTask();
+//		
+//		if(countTask==0) {
+//			return new ResultData("S-1", "업무 기록이 없습니다.");
+//		}
+//		
+//		for (int i = 1; i <= countTask; i++) {
+//			Task task = taskdao.getTask(i);
+//			if (task.isDelStatus()) {
+//				continue;
+//			}
+//			tasks.add(task);
+//		}
+//		
+//		return new ResultData("S-2", "모든 업무 기록을 표시합니다.", "모든 업무 기록", tasks);
+//	}
 
 	public ResultData doDelete(int id) {
 		taskdao.doDelete(id);
 		Task task = taskdao.getTask(id);
-		
-		if(task.isDelStatus()) {
+
+		if (task.isDelStatus()) {
 			return new ResultData("S-1", "정상적으로 삭제되었습니다.");
 		}
 		return new ResultData("F-2", "삭제에 실패했습니다.");
@@ -54,21 +70,41 @@ public class TaskService {
 	public ResultData doModify(Integer id, String title, String body) {
 		taskdao.doModify(id, title, body);
 		Task task = taskdao.getTask(id);
-		if(task.getTitle().equals(title)&&task.getBody().equals(body)) {
-			return new ResultData("S-1", "정상적으로 수정되었습니다.","result",task);
+		if (task.getTitle().equals(title) && task.getBody().equals(body)) {
+			return new ResultData("S-1", "정상적으로 수정되었습니다.", "result", task);
 		}
 		return null;
 	}
 
-	public ResultData showTask(Integer id) {
-		Task task = taskdao.getTask(id);
-		if(task==null) {
-			return new ResultData("F-1", "해당 업무가 존재하지 않습니다.");
+	// 다시짜자
+	public List<Task> getTasksByPart(Integer taskPartId) {
+		List<Task> tasks = new ArrayList<Task>();
+		if (taskPartId == 0) {
+			tasks = taskdao.getListTaskAll();
+		} else if (taskPartId != 0) {
+			tasks = taskdao.getListTaskById(taskPartId);
 		}
-		if(task.isDelStatus()) {
-			return new ResultData("F-2", "해당 업무가 삭제되었습니다.");
-		}
-		return new ResultData("S-1", "해당 업무를 표시합니다.","result",task);
+
+		return tasks;
 	}
+
+//	public List<Task> getTasksByPart(Integer taskPartId) {
+//		List<Task> tasks = new ArrayList<Task>();
+//		if (taskPartId == 0) {
+//			int LifeTaskCount = taskdao.getNumTask();
+//			for (int i = 1; i <= LifeTaskCount; i++) {
+//				Task task = taskdao.getTask(i);
+//				if (task.isDelStatus()) {
+//					continue;
+//				}
+//				tasks.add(task);
+//			}
+//		} else if (taskPartId != 0) {
+//			int LifeTaskCount = taskdao.getNumTaskByPart(taskPartId);
+//			for(int i=1)
+//		}
+//
+//		return tasks;
+//	}
 
 }

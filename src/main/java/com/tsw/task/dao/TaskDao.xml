@@ -21,11 +21,6 @@
 		#{id}
 	</select>
 
-	<select id="getNumTask" resultType="int">
-		SELECT COUNT(id)
-		FROM task
-	</select>
-
 	<update id="doDelete">
 		UPDATE TASK
 		SET delStatus=TRUE,
@@ -41,6 +36,32 @@
 		updateDate = NOW()
 		WHERE id = #{id};
 	</update>
+
+	<select id="getNumTask" resultType="int">
+		SELECT COUNT(id)
+		FROM task
+	</select>
+
+	<select id="getNumTaskByPart" resultType="int">
+		SELECT COUNT(id)
+		FROM
+		TASK
+		WHERE taskPartId=#{taskPartId}
+	</select>
+
+	<select id="getListTaskAll" resultType="Task">
+		SELECT *
+		FROM TASK
+		WHERE
+		delStatus=FALSE
+	</select>
+
+	<select id="getListTaskById" resultType="Task">
+		SELECT *
+		FROM TASK
+		WHERE delStatus=FALSE
+		AND taskPartId=#{taskPartId}
+	</select>
 
 
 
