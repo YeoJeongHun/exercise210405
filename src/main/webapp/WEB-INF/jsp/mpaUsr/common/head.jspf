@@ -8,6 +8,14 @@
 
 <!-- 테이블 조정 -->
 <style type="text/css">
+.TaskTableSetTitle {
+	
+}
+
+.TaskTitle {
+	text-align : center;
+	font-size : 2rem;
+}
 tr {
     border: 1px solid #bcbcbc;
     margin-left: auto;

@@ -2,56 +2,51 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageTitle"
-	value="<span><i class='fas fa-home'></i></span> <span>HOME</span>" />
-
 <%@ include file="../common/head.jspf"%>
 
-zzzzzzzzzzzzzzzzzzzzzzz
-<table>
-	<tbody>
-		<tr>
-			<td>새로운 업무</td>
-			<td>진행중 업무</td>
-		</tr>
-		<tr>
-			<td>이달의 실적</td>
-			<td>오늘 상담</td>
-		</tr>
-		<tr>
-			<td colspan="2">기타사항</td>
-		</tr>
-	</tbody>
-</table>
-
-
-</br>
-</br>
-</br>
-</br>
 <div class="section section-article-list">
 	<div class="container mx-auto">
 		<div class="articles">
 			<table>
-				<tbody>
+				<tbody>				
 					<tr>
-						<c:forEach items="${tasks}" var="task">
-							<div>
-								${task}
-							</div>
-							<hr />
-						</c:forEach>
+						<td colspan="4">
+							<div class="TaskTitle">진행중 업무</div>
+						</td>
 					</tr>
-					</br>
-					</br>
 					<tr>
-						<c:forEach items="${tasks}" var="task">
-							<div>
-								${task}
-							</div>
-							<hr />
-						</c:forEach>
+						<td style="width:10%;">번호</td>
+						<td style="width:55%;">제목</td>
+						<td style="width:25%;">작성일</td>
+						<td style="width:15%;">작성자</td>
 					</tr>
+					<c:forEach items="${tasks}" var="task">
+						<tr>
+							<td>${task.id}</td>
+							<td>${task.title}</td>
+							<td>${task.regDate}</td>
+							<td>${task.memberId}</td>
+						</tr>
+					</c:forEach>					
+					<tr>
+						<td colspan="4">
+							<div class="TaskTitle">완료된 업무</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:10%;">번호</td>
+						<td style="width:55%;">제목</td>
+						<td style="width:25%;">작성일</td>
+						<td style="width:15%;">작성자</td>
+					</tr>
+					<c:forEach items="${tasks}" var="task">
+						<tr>
+							<td>${task.id}</td>
+							<td>${task.title}</td>
+							<td>${task.regDate}</td>
+							<td>${task.memberId}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
