@@ -52,15 +52,25 @@
 	<select id="getListTaskAll" resultType="Task">
 		SELECT *
 		FROM TASK
-		WHERE
-		delStatus=FALSE
+		ORDER
+		BY
+		id DESC
+		LIMIT #{limitFrom}, #{itemsCountInAPage}
 	</select>
 
 	<select id="getListTaskById" resultType="Task">
 		SELECT *
 		FROM TASK
+		WHERE
+		taskPartId=#{taskPartId}
+		ORDER BY id DESC
+		LIMIT #{limitFrom}, #{itemsCountInAPage}
+	</select>
+
+	<select id="getTaskAllCount" resultType="int">
+		SELECT COUNT(id)
+		FROM TASK
 		WHERE delStatus=FALSE
-		AND taskPartId=#{taskPartId}
 	</select>
 
 

@@ -5,9 +5,13 @@
 
 <mapper namespace="com.tsw.task.dao.MemberDao">
 
-	<select id="getAllMember" resultType="Member">
+	<select id="doLogin" resultType="Member">
 		SELECT *
-		FROM member
+		FROM `member`
+		WHERE loginId=#{loginId}
+		AND loginPw=#{loginPw}
 	</select>
+
+
 
 </mapper>

@@ -7,6 +7,9 @@
 
 <%@ include file="common/head.jspf"%>
 
+	상태 : ${LoginError}
+	로그인 상태 : ${LoginedMember}
+	테스트 : ${test}
 
     <table class="table_main">
       <tbody>

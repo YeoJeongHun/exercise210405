@@ -4,6 +4,16 @@
 
 <%@ include file="../common/head.jspf"%>
 
+totalPageNum : ${totalPageNum}
+totalPage : ${totalPage}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+	
+
 <div class="section section-article-list">
 	<div class="container mx-auto">
 		<div class="articles">
@@ -30,6 +40,11 @@
 					</c:forEach>					
 					<tr>
 						<td colspan="4">
+							<%@ include file="../common/page.jspf"%>
+						</td>
+					</tr>					
+					<tr>
+						<td colspan="4">
 							<div class="TaskTitle">완료된 업무</div>
 						</td>
 					</tr>
@@ -47,6 +62,11 @@
 							<td>${task.memberId}</td>
 						</tr>
 					</c:forEach>
+					<tr>
+						<td colspan="4">
+							<%@ include file="../common/page.jspf"%>
+						</td>
+					</tr>	
 				</tbody>
 			</table>
 		</div>

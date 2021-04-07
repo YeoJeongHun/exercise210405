@@ -22,9 +22,11 @@ public interface TaskDao {
 
 	int getNumTaskByPart(@Param("taskPartIdint") int taskPartId);
 
-	List<Task> getListTaskAll();
+	List<Task> getListTaskAll(@Param("limitFrom") int limitFrom, @Param("itemsCountInAPage") int itemsCountInAPage);
 
-	List<Task> getListTaskById(@Param("taskPartId") int taskPartId);
+	List<Task> getListTaskById(@Param("taskPartId") int taskPartId, @Param("limitFrom") int limitFrom, @Param("itemsCountInAPage") int itemsCountInAPage);
+
+	int getTaskAllCount();
 	
 }
 

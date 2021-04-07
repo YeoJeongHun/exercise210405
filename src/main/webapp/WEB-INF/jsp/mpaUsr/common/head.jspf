@@ -6,33 +6,35 @@
 <head>
 <meta charset="UTF-8">
 
+
+
+
 <!-- 테이블 조정 -->
 <style type="text/css">
-.TaskTableSetTitle {
-	
+.TaskTitle {
+	text-align: center;
+	font-size: 2rem;
 }
 
-.TaskTitle {
-	text-align : center;
-	font-size : 2rem;
-}
 tr {
-    border: 1px solid #bcbcbc;
-    margin-left: auto;
-    margin-right: auto;	
+	border: 1px solid #bcbcbc;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 td {
-    border: 1px solid #bcbcbc;
-    margin-left: auto;
-    margin-right: auto;	
+	border: 1px solid #bcbcbc;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 .table_main {
-    border: 1px solid #bcbcbc;
-    width: 90%;
-    height: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+	border: 1px solid #bcbcbc;
+	width: 90%;
+	height: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 
 <!-- 부트스트랩 추가해줌 -->
@@ -67,9 +69,9 @@ td {
 
 <link rel="stylesheet" href="/resource/common.css" />
 <script src="/resource/common.js" defer></script>
-<title>${pageTitle}연습모드! 업무짜자</title>
+<title>${pageTitle}연습모드!업무짜자</title>
 </head>
-<body>
+<body style="background-color: #9DE4FF">
 	<div class="site-wrap">
 		<header class="top-bar top-bar--fly">
 			<div class="container mx-auto flex h-full">
@@ -86,8 +88,9 @@ td {
 									<i class="fas fa-home"></i>
 							</span> <span class="hidden sm:block">&nbsp;HOME</span>
 						</a></li>
-						<li><a href="../mpaUsr/task/showTasks?TaskPartId=0" class="h-full flex items-center px-5"> <span>
-									<i class="fa fa-camera"></i>
+						<li><a href="../mpaUsr/task/showTasks?TaskPartId=0"
+							class="h-full flex items-center px-5"> <span> <i
+									class="fa fa-camera"></i>
 							</span> <span class="hidden md:block">&nbsp;업무</span>
 						</a>
 							<div>
@@ -97,33 +100,29 @@ td {
 									</a>
 								</h1>
 								<ul>
-									<li><a
-										href="/mpaUsr/task/showTasks?TaskPartId=0"> <span>
+									<li><a href="/mpaUsr/task/showTasks?TaskPartId=0"> <span>
 												<i class="far fa-clipboard"></i>
 										</span> <span>&nbsp;전체 업무</span>
 									</a></li>
-									<li><a href="/mpaUsr/task/showTasks?TaskPartId=1"> <span> <i
-												class="far fa-clipboard"></i>
+									<li><a href="/mpaUsr/task/showTasks?TaskPartId=1"> <span>
+												<i class="far fa-clipboard"></i>
 										</span> <span>&nbsp;TM 업무</span>
 									</a></li>
-									<li><a
-										href="/mpaUsr/task/showTasks?TaskPartId=2"> <span>
+									<li><a href="/mpaUsr/task/showTasks?TaskPartId=2"> <span>
 												<i class="far fa-clipboard"></i>
 										</span> <span>&nbsp;영업 업무</span>
 									</a></li>
-									<li><a
-										href="/mpaUsr/task/showTasks?TaskPartId=3"> <span>
+									<li><a href="/mpaUsr/task/showTasks?TaskPartId=3"> <span>
 												<i class="far fa-clipboard"></i>
 										</span> <span>&nbsp;기술지원팀 업무</span>
 									</a></li>
-									<li><a
-										href="/mpaUsr/task/showTasks?TaskPartId=4"> <span>
+									<li><a href="/mpaUsr/task/showTasks?TaskPartId=4"> <span>
 												<i class="far fa-clipboard"></i>
 										</span> <span>&nbsp;경영지원팀 업무</span>
 									</a></li>
 								</ul>
 							</div></li>
-							<li><a href="#" class="h-full flex items-center px-5"> <span>
+						<li><a href="#" class="h-full flex items-center px-5"> <span>
 									<i class="fa fa-camera"></i>
 							</span> <span class="hidden md:block">&nbsp;실적</span>
 						</a>
@@ -145,11 +144,22 @@ td {
 									</a></li>
 								</ul>
 							</div></li>
-						<li><a href="#" class="h-full flex items-center px-5"> <span>
-									<i class="fas fa-sign-out-alt"></i>
-							</span> <span class="hidden md:block">&nbsp;SIGN OUT</span>
-						</a>
-							<div></div></li>
+						<c:choose>
+							<c:when test="${empty LoginedMember}">
+							<li><a href="/mpaUsr/member/LoginPage" class="h-full flex items-center px-5">
+										<span> <i class="fas fa-sign-out-alt"></i>
+									</span> <span class="hidden md:block">&nbsp;SIGN IN</span>
+								</a>
+									<div></div></li>							
+							</c:when>
+							<c:otherwise>
+								<li><a href="/mpaUsr/member/doLogout" class="h-full flex items-center px-5">
+										<span> <i class="fas fa-sign-out-alt"></i>
+									</span> <span class="hidden md:block">&nbsp;SIGN OUT</span>
+								</a>
+									<div></div></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</nav>
 			</div>

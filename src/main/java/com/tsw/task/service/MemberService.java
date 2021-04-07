@@ -14,8 +14,8 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberdao;
 
-	public List<Member> getAllMember() {
-		return memberdao.getAllMember();
+	public Member doLogin(String loginId, String loginPw) {
+		return memberdao.doLogin(loginId, loginPw);
 	}
 	
 }

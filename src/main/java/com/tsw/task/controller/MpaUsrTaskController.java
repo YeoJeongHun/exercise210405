@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tsw.task.dto.ResultData;
@@ -32,13 +33,23 @@ public class MpaUsrTaskController {
 	
 	//http://localhost:8024/mpaUsr/task/showTasks?TaskPartId=0
 	@RequestMapping("/mpaUsr/task/showTasks")
-	public String showTasks(HttpServletRequest req, Integer TaskPartId) {
-		if (TaskPartId == 9) {
-			return msgAndBack(req, TaskPartId + "번 업무 PART가 존재하지 않습니다.");
-		}
-		List<Task> tasks = service.getTasksByPart(TaskPartId);
+	public String showTasks(HttpServletRequest req, Integer TaskPartId, @RequestParam(defaultValue = "1") int page) {
+		int totalItemsCount = service.getTaskAllCount(TaskPartId);
+		int itemsCountInAPage = 10;
+		int totalPage = (int) Math.ceil(totalItemsCount / (double) itemsCountInAPage);
+		
+		List<Task> tasks = service.getTasksByPart(TaskPartId, itemsCountInAPage, page);
 		req.setAttribute("tasks", tasks);
 		req.setAttribute("pageTitle", "업무관리");
+		
+		int pageListNow = (int) Math.ceil(page / (double) itemsCountInAPage);
+		int totalPageList = (int) Math.ceil(totalPage / (double) itemsCountInAPage);
+		req.setAttribute("startNumPageList", (itemsCountInAPage*pageListNow)-9);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("totalPageList", totalPageList);
+		req.setAttribute("pageListNow", pageListNow);
+		req.setAttribute("page", page);
+		req.setAttribute("TaskPartId", TaskPartId);
 		
 		return "mpaUsr/task/showTasks";
 	}
@@ -47,7 +58,14 @@ public class MpaUsrTaskController {
 	
 	
 	
+	
+	
+	
+	
+	
 	//추가 함수
+	
+	
 	private String msgAndBack(HttpServletRequest req, String msg) {
 		req.setAttribute("msg", msg);
 		req.setAttribute("historyBack", true);

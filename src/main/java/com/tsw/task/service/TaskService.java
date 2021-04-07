@@ -77,15 +77,23 @@ public class TaskService {
 	}
 
 	// 다시짜자
-	public List<Task> getTasksByPart(Integer taskPartId) {
+	public List<Task> getTasksByPart(Integer taskPartId, int itemsCountInAPage, int page) {
 		List<Task> tasks = new ArrayList<Task>();
+		int limitFrom = (page - 1) * itemsCountInAPage;
 		if (taskPartId == 0) {
-			tasks = taskdao.getListTaskAll();
+			tasks = taskdao.getListTaskAll(limitFrom, itemsCountInAPage);
 		} else if (taskPartId != 0) {
-			tasks = taskdao.getListTaskById(taskPartId);
+			tasks = taskdao.getListTaskById(taskPartId, limitFrom, itemsCountInAPage);
 		}
 
 		return tasks;
+	}
+
+	public int getTaskAllCount(Integer taskPartId) {
+		if (taskPartId == 0) {
+			return taskdao.getTaskAllCount();
+		}
+		return 0;
 	}
 
 //	public List<Task> getTasksByPart(Integer taskPartId) {
