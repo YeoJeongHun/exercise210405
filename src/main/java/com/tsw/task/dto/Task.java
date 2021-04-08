@@ -18,4 +18,7 @@ public class Task {
 	private boolean delStatus;
 	private String delDate;
 	private int reciverCount;
+	private int hitCount;
+	private int replyCount;
+	private int goodCount;
 }

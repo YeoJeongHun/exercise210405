@@ -1,6 +1,5 @@
 package com.tsw.task.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,35 +9,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.tsw.task.dto.ResultData;
+import com.tsw.task.dto.Member;
 import com.tsw.task.dto.Task;
 import com.tsw.task.service.TaskService;
 import com.tsw.task.util.Util;
 
 @Controller
+@SessionAttributes("session")
 public class MpaUsrTaskController {
-
+	
 	private Util util = new Util();
 	@Autowired
 	private TaskService service;
-
-	@RequestMapping("/")
-	public String showMainRoot() {
-		return "redirect:/mpaUsr/main";
-	}
+	MpaUsrMemberController MemCon = new MpaUsrMemberController();
+	Member LoginedMember;
 
 	@RequestMapping("/mpaUsr/main")
 	public String test(HttpServletRequest req) {
-		req.setAttribute("pageTitle", "메인페이지");
+		LoginedMember = (Member) req.getAttribute("LoginedMember");
+		if(LoginedMember==null) {
+			return "redirect:/mpaUsr/member/LoginPage";
+		}
 		return "mpaUsr/main";
+//		return "mpaUsr/member/LoginPage";
 	}
 
 	// http://localhost:8024/mpaUsr/task/showTasks?TaskPartId=0
 	@RequestMapping("/mpaUsr/task/showTasks")
 	public String showTasks(HttpServletRequest req, Integer TaskPartId,
 			@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "click") String action) {
+
+		LoginedMember = (Member) req.getAttribute("LoginedMember");
+		if(LoginedMember==null) {
+			
+		}
 		int totalItemsCount = service.getTaskAllCount(TaskPartId);
 		int itemsCountInAPage = 10;
 
@@ -66,13 +72,19 @@ public class MpaUsrTaskController {
 		
 		return "mpaUsr/task/showTask";
 	}
+	
+	@RequestMapping("/mpaUsr/task/writeTask")
+	public String writeTask(HttpServletRequest req) {
+		return "mpaUsr/task/writeTask";
+	}
 
-
+	@RequestMapping("/mpaUsr/task/doWriteTask")
+	public String doWriteTask(HttpServletRequest req) {
+		return "mpaUsr/task/writeTask";
+	}
 	
 
 
-	
-	
 	
 	
 	

@@ -15,7 +15,11 @@ public class MemberService {
 	private MemberDao memberdao;
 
 	public Member doLogin(String loginId, String loginPw) {
-		return memberdao.doLogin(loginId, loginPw);
+		Member member = memberdao.doLogin(loginId, loginPw);
+		if(member==null) {
+			return null;
+		}
+		return member;
 	}
 	
 }

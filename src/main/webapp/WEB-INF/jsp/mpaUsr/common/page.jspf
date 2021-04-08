@@ -35,7 +35,6 @@
 		</form>
 	</c:forEach>
 <form action="showTasks">
-<form action="showTasks">
 	<input type="hidden" name="TaskPartId" value="${TaskPartId}">
 	<input type="hidden" name="page" value="${page}">
 	<input type="hidden" name="action" value="up">
@@ -51,5 +50,12 @@
 		<span>>></span>
 	</button>
 </form>
-</form>
-	
+<button><a href="/mpaUsr/task/writeTask">글쓰기</a></button>
+
+
+
+
+
+
+
+

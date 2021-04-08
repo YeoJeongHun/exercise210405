@@ -16,9 +16,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tsw.task.dto.Member;
 
 public class Util {
 	//내가 추가한 함수
@@ -66,7 +68,14 @@ public class Util {
 		return map;
 	}
 	
-	
+	//로그인 확인 함수
+		public boolean isLogined(HttpSession session) {
+			Member LoginedMember = (Member) session.getAttribute("LoginedMember");
+			if(LoginedMember==null) {
+				return true;
+			}
+			return false;
+		}
 	
 	
 	
