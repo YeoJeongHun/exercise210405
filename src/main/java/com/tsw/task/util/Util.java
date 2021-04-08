@@ -21,6 +21,70 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
+	//내가 추가한 함수
+	public Map<String, Object> getPage(int page, int totalItemsCount, String action){
+		Map<String, Object> map = new HashMap<>();
+		int itemsCountInAPage = 10;
+		int totalPage = (int) Math.ceil(totalItemsCount / (double) itemsCountInAPage);
+		if(action.equals("up")) {
+			if(page<totalPage) {
+				page++;
+				map = getSFMap(page, totalPage);
+			}
+			else {
+				map = getSFMap(page, totalPage);
+			}
+		}
+		else if(action.equals("down")) {
+			if(page>1) {
+				page--;
+				map = getSFMap(page, totalPage);
+			}
+			else {
+				map = getSFMap(page, totalPage);
+			}
+		}
+		else if(action.equals("click")) {
+			map = getSFMap(page, totalPage);
+		}
+		map.put("page", page);
+		
+		return map;
+	}
+	
+	public Map<String, Object> getSFMap(int page, int totalPage){
+		Map<String, Object> map = new HashMap<>();
+		int startPage, finishPage;
+		startPage = ((int)Math.ceil(page/10.0))*10-9;
+		if(startPage+9<totalPage) {
+			finishPage = startPage+9;
+		}
+		else finishPage = totalPage;
+		map.put("startPage", startPage);
+		map.put("finishPage", finishPage);
+		
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static String getNowDateStr() {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date time = new Date();

@@ -12,8 +12,6 @@ public interface TaskDao {
 
 	void doWrite(@Param("title") String title, @Param("body") String body);
 
-	Task getTask(@Param("id") int id);
-
 	void doDelete(@Param("id") int id);
 
 	void doModify(@Param("id") Integer id, @Param("title") String title, @Param("body") String body);
@@ -27,6 +25,10 @@ public interface TaskDao {
 	List<Task> getListTaskById(@Param("taskPartId") int taskPartId, @Param("limitFrom") int limitFrom, @Param("itemsCountInAPage") int itemsCountInAPage);
 
 	int getTaskAllCount();
+	
+	int getTaskCount(@Param("taskPartId") int taskPartId);
+
+	Task getTask(@Param("id") int id);
 	
 }
 

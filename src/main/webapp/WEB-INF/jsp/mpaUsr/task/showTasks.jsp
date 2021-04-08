@@ -4,8 +4,11 @@
 
 <%@ include file="../common/head.jspf"%>
 
-totalPageNum : ${totalPageNum}
-totalPage : ${totalPage}
+startPage : ${startPage}
+finishPage : ${finishPage}
+page : ${page}
+action : ${action}
+totalItemsCount : ${totalItemsCount}
 
 <br/>
 <br/>
@@ -33,7 +36,7 @@ totalPage : ${totalPage}
 					<c:forEach items="${tasks}" var="task">
 						<tr>
 							<td>${task.id}</td>
-							<td>${task.title}</td>
+							<td><a href="/mpaUsr/task/showTask?id=${task.id}">${task.title}</a></td>							
 							<td>${task.regDate}</td>
 							<td>${task.memberId}</td>
 						</tr>

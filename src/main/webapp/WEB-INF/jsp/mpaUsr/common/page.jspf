@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<c:choose>
-	<c:when test="${totalPageList eq 1}">
+	
+<form action="showTasks">
+	<input type="hidden" name="TaskPartId" value="${TaskPartId}">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="action" value="down">
+	<button type="submit">
 		<span><<</span>
-		<span><</span>
-		<c:forEach var="i" begin="1" end="${totalPage}">
+	</button>
+</form>
+<form action="showTasks">
+	<input type="hidden" name="TaskPartId" value="${TaskPartId}">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="action" value="down">
+	<button type="submit">
+		<span> < </span>
+	</button>
+</form>
+	<c:forEach var="i" begin="${startPage}" end="${finishPage}">
+		<form action="showTasks">
+			<input type="hidden" name="TaskPartId" value="${TaskPartId}">
+			<input type="hidden" name="page" value="${i}">
+			<input type="hidden" name="action" value="click">
+			<button type="submit">
 			<c:choose>
 				<c:when test="${i eq page}">
 					<span style="color: red;">${i}</span>
@@ -14,73 +31,25 @@
 					<span>${i}</span>
 				</c:otherwise>
 			</c:choose>
-		</c:forEach>
+			</button>
+		</form>
+	</c:forEach>
+<form action="showTasks">
+<form action="showTasks">
+	<input type="hidden" name="TaskPartId" value="${TaskPartId}">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="action" value="up">
+	<button type="submit">
 		<span>></span>
+	</button>
+</form>
+<form action="showTasks">
+	<input type="hidden" name="TaskPartId" value="${TaskPartId}">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="action" value="up">
+	<button type="submit">
 		<span>>></span>
-		<br />
-		<!-- 페이지리스트 하나임 페이지 다 표시하고 다음 이전 페이지리시트 없음 -->
-	</c:when>
-	<c:when test="${pageListNow eq 1}">
-		<span><<</span>
-		<span><</span>
-		<c:forEach var="i" begin="1" end="10">
-			<c:choose>
-				<c:when test="${i eq page}">
-					<span style="color: red;">${i}</span>
-				</c:when>
-				<c:otherwise>
-					<span>${i}</span>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<span>></span>
-		<span>>></span>
-		<br />
-		<!-- 여기는 첫번째 페이지리스트 1~10 표시 후 다음페이지리스트만 표시 -->
-	</c:when>
-
-	<c:when test="${pageListNow eq totalPageList}">
-		<span><<</span>
-		<span><</span>
-		<c:forEach var="i" begin="${startNumPageList}" end="${totalPage}">
-			<form action="showTasks">
-				<input type="hidden" name="TaskPartId" value="${TaskPartId}">
-				<input type="hidden" name="page" value="${i}">
-				<button type="submit">
-					<c:choose>
-						<c:when test="${i eq page}">
-							<span style="color: red;">${i}</span>
-						</c:when>
-						<c:otherwise>
-							<span>${i}</span>
-						</c:otherwise>
-					</c:choose>
-				</button>
-			</form>
-		</c:forEach>
-		<span>></span>
-		<span>>></span>
-		<br />
-		<!-- 여기는 마지막 페이지임 다음페이지리스트 표시 없음 -->
-	</c:when>
-	<c:otherwise>
-		<span><<</span>
-		<span><</span>
-		<c:forEach var="i" begin="${startNumPageList}"
-			end="${startNumPageList+9}">
-			<c:choose>
-				<c:when test="${i eq page}">
-					<span style="color: red;">${i}</span>
-				</c:when>
-				<c:otherwise>
-					<span>${i}</span>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<span>></span>
-		<span>>></span>
-		<br />
-		<!-- 중간 페이지임 여기는 다음 페이지리스트 이전페이지리스트 다 표현되게 하기 -->
-	</c:otherwise>
-
-</c:choose>
+	</button>
+</form>
+</form>
+	

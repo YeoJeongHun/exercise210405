@@ -9,8 +9,13 @@
 
 
 
+
+
 <!-- 테이블 조정 -->
 <style type="text/css">
+form {
+	display: inline;
+}
 .TaskTitle {
 	text-align: center;
 	font-size: 2rem;

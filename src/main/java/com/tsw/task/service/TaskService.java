@@ -21,20 +21,8 @@ public class TaskService {
 		return new ResultData("S-1", "업무가 정상적으로 등록되었습니다.");
 	}
 
-	public List<Task> getTask(int taskId) {
-		List<Task> tasks = new ArrayList<>();
-
-		int countTask = taskdao.getNumTask();
-
-		for (int i = 1; i <= countTask; i++) {
-			Task task = taskdao.getTask(i);
-			if (task.isDelStatus()) {
-				continue;
-			}
-			tasks.add(task);
-		}
-
-		return tasks;
+	public Task getTask(int id) {
+		return taskdao.getTask(id);
 	}
 
 //	public ResultData showAll() {
@@ -93,7 +81,9 @@ public class TaskService {
 		if (taskPartId == 0) {
 			return taskdao.getTaskAllCount();
 		}
-		return 0;
+		else {
+			return taskdao.getTaskCount(taskPartId);
+		}
 	}
 
 //	public List<Task> getTasksByPart(Integer taskPartId) {
