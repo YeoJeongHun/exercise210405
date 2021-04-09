@@ -29,6 +29,12 @@ public interface TaskDao {
 	int getTaskCount(@Param("taskPartId") int taskPartId);
 
 	Task getTask(@Param("id") int id);
+
+	void doWriteTask(@Param("title")String title, @Param("body") String body, @Param("writer") int writer, @Param("taskPartId") int taskPartId);
+
+	void doDeleteTask(@Param("id") int id);
+
+	void doModifyTask(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 	
 }
 

@@ -30,12 +30,20 @@
 				${task.body}
 			</div>
 			<div>
-				<form>
-					<input type="hidden" name="write">
+				<form action="ModifyTask">
+					<input type="hidden" name="memberId" value="${task.memberId}">
+					<input type="hidden" name="id" value="${task.id}">
 					<button>
 						<수정>
 					</button>
 					<<-누르지마! 아직 기능은 안됨
+				</form>
+				<form action="doDeleteTask">
+					<input type="hidden" name="memberId" value="${task.memberId}">
+					<input type="hidden" name="id" value="${task.id}">
+					<button>
+						<삭제>
+					</button>
 				</form>
 			</div>
 			<div class="detail-reply">

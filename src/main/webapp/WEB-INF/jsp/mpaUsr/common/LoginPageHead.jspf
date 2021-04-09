@@ -105,5 +105,6 @@
 		<div class="bottomText">
 			Don't you have ID? <a href="#">sign up</a>
 		</div>
+		<div>테스트 ID : test1 / PW : test1</div>
 	</form>
 </body>

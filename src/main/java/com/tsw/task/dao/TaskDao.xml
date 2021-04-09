@@ -52,6 +52,8 @@
 	<select id="getListTaskAll" resultType="Task">
 		SELECT *
 		FROM TASK
+		WHERE
+		delStatus=FALSE
 		ORDER
 		BY
 		id DESC
@@ -63,8 +65,10 @@
 		FROM TASK
 		WHERE
 		taskPartId=#{taskPartId}
+		AND delStatus=FALSE
 		ORDER BY id DESC
-		LIMIT #{limitFrom},
+		LIMIT
+		#{limitFrom},
 		#{itemsCountInAPage}
 	</select>
 
@@ -81,6 +85,33 @@
 		WHERE delStatus=FALSE
 		AND taskPartId=#{taskPartId}
 	</select>
+
+	<insert id="doWriteTask">
+		INSERT TASK
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		title = #{title},
+		`body` = #{body},
+		taskPartId = #{taskPartId},
+		memberId
+		= #{writer}
+	</insert>
+
+	<update id="doDeleteTask">
+		UPDATE TASK
+		SET delStatus = true,
+		updateDate = NOW()
+		WHERE id = #{id}
+	</update>
+
+	<update id="doModifyTask">
+		UPDATE TASK
+		SET title = #{title},
+		body=#{body},
+		updateDate = NOW()
+		WHERE id = #{id};
+	</update>
+
 
 
 

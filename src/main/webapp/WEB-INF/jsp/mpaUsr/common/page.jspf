@@ -50,7 +50,7 @@
 		<span>>></span>
 	</button>
 </form>
-<button><a href="/mpaUsr/task/writeTask">글쓰기</a></button>
+<button><a href="/mpaUsr/task/writeTask?TaskPartId=${TaskPartId}">글쓰기</a></button>
 
 
 

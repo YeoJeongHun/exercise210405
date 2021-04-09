@@ -86,6 +86,29 @@ public class TaskService {
 		}
 	}
 
+	public void doWriteTask(String title, String body, int writer, int taskPartId) {
+		taskdao.doWriteTask(title, body, writer, taskPartId);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doDeleteTask(int id) {
+		taskdao.doDeleteTask(id);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doModifyTask(int id, String title, String body) {
+		taskdao.doModifyTask(id, title, body);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
 //	public List<Task> getTasksByPart(Integer taskPartId) {
 //		List<Task> tasks = new ArrayList<Task>();
 //		if (taskPartId == 0) {
